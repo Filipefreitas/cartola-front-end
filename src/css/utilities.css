@@ -1,0 +1,186 @@
+/************* BASIC CONFIG *************/
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*border: 1px solid #f00 !important;*/
+}
+
+body
+{
+    background-color:white;
+    color: darkgrey;
+    line-height: 1.7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+img
+{
+    width:100%;
+    max-width:100%;
+}
+
+h1,h2,h3
+{
+    margin-top: 16px;
+}
+
+.hide
+{ 
+    display:none;
+}
+
+.container
+{
+    width:100%;
+}
+
+.vertical-center 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizontal-center
+{
+    margin: 0 auto;
+}
+
+.right-alligned
+{
+    margin-left: auto; 
+    margin-right: 20%;
+}
+
+.left-alligned
+{
+    margin-left: 5%; 
+    margin-right: auto;
+}
+
+.text-left-alligned
+{
+    text-align: left;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.section-title
+{
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.font-white
+{
+    color: white;
+}
+
+.no-decoration
+{
+    text-decoration: none;
+}
+
+.no-wrap
+{
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.green
+{
+    color: #4ba416;
+}
+
+.red
+{
+    color: #fe4f4f;
+}
+
+.grey
+{
+    color: #cecece;
+}
+
+.size-10
+{
+    font-size: 10px;
+}
+
+/************* FONT SIZES *************/
+.font-size-14
+{
+    font-size: 14px;
+}
+
+/************* DISPLAY *************/
+.inline
+{
+    display: inline;
+}
+
+.block
+{
+    display: block;
+}
+
+.inline-block
+{
+    display: inline-block;
+}
+
+/************* GRIDS *************/
+.grid
+{
+    display: grid;
+}
+
+.grid-col-2
+{
+    grid-template-columns: 1fr 1fr;
+}
+
+.grid-col-2-2
+{
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.grid-col-3
+{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.grid-col-4
+{
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.grid-col-5
+{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.grid-col-6
+{
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.grid-row-3
+{
+    grid-template-rows: 50px auto 50px;
+}
+
+.span-headers
+{
+    column-span: all;
+}
