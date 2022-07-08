@@ -22,23 +22,38 @@ const Rankings = (props) => {
     const colWidth = 70;
 
     const [columnDefs, setColumnDefs] = useState([
-        {
-            field: 'team'
-            , rowGroup: true
-            , width: 80
-        }
-        , {
-            field: 'round'
-            , enablePivot: true
-            , pivot: true
-            , pivotComparator: (valueA, valueB) => valueA - valueB
-            , width: colWidth
-        }
-        , {
-            field: 'points'
-            , aggFunc: 'sum'
-            , width: colWidth
-        }
+        {field: 'team', rowGroup: true, width: 120}
+        , {field: 'round', pivot: true, pivotComparator: (valueA, valueB) => valueA - valueB}
+        , {field: 'points', width: colWidth, aggFunc: 'sum'}
+        , {field: 'pointsHome', width: colWidth}
+        , {field: 'pointsAway', width: colWidth}
+        , {field: 'won', width: colWidth}
+        , {field: 'wonHome', width: colWidth}
+        , {field: 'wonAway', width: colWidth}
+        , {field: 'drawn', width: colWidth}
+        , {field: 'drawnHome', width: colWidth}
+        , {field: 'drawnAway', width: colWidth}
+        , {field: 'lost', width: colWidth}
+        , {field: 'lostHome', width: colWidth}
+        , {field: 'lostAway', width: colWidth}
+        , {field: 'goalsScored', width: colWidth}
+        , {field: 'goalsScoredHome', width: colWidth}
+        , {field: 'goalsScoredAway', width: colWidth}
+        , {field: 'goalsAgainst', width: colWidth}
+        , {field: 'goalsAgainstHome', width: colWidth}
+        , {field: 'goalsAgainstAway', width: colWidth}
+        , {field: 'goalsDifference', width: colWidth}
+        , {field: 'goalsDifferenceHome', width: colWidth}
+        , {field: 'goalsDifferenceAway', width: colWidth}
+        , {field: 'cleanSheets', width: colWidth}
+        , {field: 'cleanSheetsHome', width: colWidth}
+        , {field: 'cleanSheetsAway', width: colWidth}
+        , {field: 'noGoals', width: colWidth}
+        , {field: 'noGoalsHome', width: colWidth}
+        , {field: 'noGoalsAway', width: colWidth}
+        , {field: 'percPoints', width: colWidth}
+        , {field: 'percPointsHome', width: colWidth}
+        , {field: 'percPointsAway', width: colWidth}
     ]);
 
     const defaultColDef = useMemo(() => {
@@ -46,33 +61,49 @@ const Rankings = (props) => {
           resizable: true
           , suppressSizeToFit: true
           , sortable: true
+          , enableValue: true
+          , enableRowGroup: true
+          , enablePivot: true
+          , enableColResize: true
+          , suppressCount: true
         };
       }, []);
+
+    const autoGroupColumnDef = {
+    headerValueGetter: params => `${params.colDef.headerName}`
+    , cellRendererParams: {
+        suppressCount: true
+      }
+    };
     
-      const onGridReady = useCallback((params) => {
-        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/runningStats`)
-            .then(response=>response.json())
-            .then(json=>{
-                setRowData(json.data)    
+    //fetch data when grid is ready   
+    const onGridReady = useCallback((params) => {
+    fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/runningStats`)
+        .then(response=>response.json())
+        .then(json=>{
+            setRowData(json.data)    
+    })
+    .catch(err=>{
+            console.log(`Error ${err}`)
         })
-        .catch(err=>{
-                console.log(`Error ${err}`)
-            })
-        }, []);
-    
+    }, []);
+
     const gridOptions = {
         suppressAggFuncInHeader: true
         , suppressSizeToFit: true
         , pivotMode: true
+        , toolPanel: 'columns'
+        , sideBar: 'columns'
     }
     
     return (
-        <div className="ag-theme-alpine" style={{height: 675, width: 1800}}>
+        <div className="ag-theme-alpine" style={{height: 675, width: 1600}}>   
            <AgGridReact
                 ref={gridRef}
                 rowData={rowData}
                 rowHeight={rowHeight}
                 columnDefs={columnDefs}
+                autoGroupColumnDef={autoGroupColumnDef}
                 defaultColDef={defaultColDef}
                 gridOptions={gridOptions}
                 onGridReady={onGridReady}
