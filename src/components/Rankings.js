@@ -1,47 +1,87 @@
-import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react';
-import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
+'use strict';
 
+import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react';
+import { render } from 'react-dom';
+import { AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-enterprise';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 import "../css/App.css"
 import "../css/utilities.css"
 
-import 'ag-grid-community/dist/styles/ag-grid.css'; // Core grid CSS, always needed
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css'; // Optional theme CSS
-
 const Rankings = (props) => {
-
+    
+    const gridRef = useRef();
+    
     const [rowData,  setRowData] = useState([{}]);
+    
+    const rowHeight = 28;
 
-    //running stats
-    useEffect(()=>{ 
-        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/roundStats`)
-        .then(response=>response.json())
-        .then(json=>{
-            setRowData(json.data)    
+    const colWidth = 70;
+
+    const [columnDefs, setColumnDefs] = useState([
+        {
+            field: 'team'
+            , rowGroup: true
+            , width: 80
+        }
+        , {
+            field: 'round'
+            , enablePivot: true
+            , pivot: true
+            , pivotComparator: (valueA, valueB) => valueA - valueB
+            , width: colWidth
+        }
+        , {
+            field: 'points'
+            , aggFunc: 'sum'
+            , width: colWidth
+        }
+    ]);
+
+    const defaultColDef = useMemo(() => {
+        return {
+          resizable: true
+          , suppressSizeToFit: true
+          , sortable: true
+        };
+      }, []);
+    
+      const onGridReady = useCallback((params) => {
+        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/runningStats`)
+            .then(response=>response.json())
+            .then(json=>{
+                setRowData(json.data)    
         })
         .catch(err=>{
                 console.log(`Error ${err}`)
             })
         }, []);
-
+    
     const gridOptions = {
-        columnDefs: [
-         {field: 'round', pivot: true, enablePivot: true}
-         , {field: 'points', aggFunc: 'sum'}]
-        
-         , pivotMode: true
-         , suppressAggFuncInHeader: true
+        suppressAggFuncInHeader: true
+        , suppressSizeToFit: true
+        , pivotMode: true
     }
     
     return (
-        <div className='ag-theme-alpine' style={{height: 500}}> 
-            <AgGridReact
+        <div className="ag-theme-alpine" style={{height: 675, width: 1800}}>
+           <AgGridReact
+                ref={gridRef}
                 rowData={rowData}
-                columnDefs={gridOptions.columnDefs}
+                rowHeight={rowHeight}
+                columnDefs={columnDefs}
+                defaultColDef={defaultColDef}
                 gridOptions={gridOptions}
-                />
-        </div>
+                onGridReady={onGridReady}
+               >
+           </AgGridReact>
+       </div>
     )
 }
+
+render(<Rankings></Rankings>, document.querySelector('#root'));
 
 export default Rankings
