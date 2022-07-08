@@ -50,7 +50,7 @@ const MonthMapPage = (props) =>
 
     //initial state
     useEffect(()=>{ 
-        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/stats`)
+        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/list`)
         .then(response=>response.json())
         .then(json=>{
             setRounds(json.data)
@@ -62,7 +62,7 @@ const MonthMapPage = (props) =>
 
     //filter state
     useEffect(()=>{ 
-        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/stats`)
+        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/list`)
         .then(response=>response.json())
         .then(json=>{
             setFilteredRounds(json.data.filter(rounds => rounds.cartolaMonth === month))

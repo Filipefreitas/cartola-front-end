@@ -51,9 +51,9 @@ const Rankings = (props) => {
         , {field: 'noGoals', width: colWidth}
         , {field: 'noGoalsHome', width: colWidth}
         , {field: 'noGoalsAway', width: colWidth}
-        , {field: 'percPoints', width: colWidth}
-        , {field: 'percPointsHome', width: colWidth}
-        , {field: 'percPointsAway', width: colWidth}
+        , {field: 'percPoints', width: colWidth, pivot: false, defaultAggFunc: 'last'}
+        , {field: 'percPointsHome', width: colWidth, pivot: false, defaultAggFunc: 'last'}
+        , {field: 'percPointsAway', width: colWidth , pivot: false, defaultAggFunc: 'last'}
     ]);
 
     const defaultColDef = useMemo(() => {
@@ -76,13 +76,15 @@ const Rankings = (props) => {
       }
     };
     
-    //fetch data when grid is ready   
+    //fetch data when grid is ready, filtering games that have already been played   
     const onGridReady = useCallback((params) => {
     fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/runningStats`)
         .then(response=>response.json())
         .then(json=>{
-            setRowData(json.data)    
-    })
+            setRowData(json.data.filter((item) => {
+                return item.alreadyPlayed === true;
+            }))
+        })
     .catch(err=>{
             console.log(`Error ${err}`)
         })
