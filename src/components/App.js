@@ -29,11 +29,11 @@ const App =() =>
         <Routes>
           <Route exact path="/"element={<HomePage/>}/>
           
-          <Route exact path="/standings"element={<StandingsPage/>}/>
-          
           <Route exact path="/rankings" element={<RankingsPage runningStats={runningStats} setRunningStats={setRunningStats}/>}/> 
 
           <Route exact path="/map" element={<MonthMapPage runningStats={runningStats} setRunningStats={setRunningStats}/>}/>
+          
+          <Route exact path="/standings"element={<StandingsPage/>}/>
         </Routes>
       </Router>
   )

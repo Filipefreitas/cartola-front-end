@@ -13,9 +13,10 @@
     margin: auto;
 }
 
-.logo img
+.logo
 {
   width: 75px;
+  color: white;
 }
 
 /************* FOOTER *************/
@@ -127,4 +128,27 @@ thead th {
 {
     padding-top: 30px;
     padding-left: 20px;
+}
+
+/************* HOME PAGE *************/
+.home-page-container
+{
+    padding: 30px 0;
+}
+
+.home-container 
+{
+    width: 50%;
+    padding-top: 50px;
+}
+
+.home-content
+{
+    font-size: 14px;
+    width: 80%;
+}
+
+.home-container img
+{
+    width: 140px;
 }

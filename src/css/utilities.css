@@ -53,18 +53,21 @@ h1,h2,h3
 .right-alligned
 {
     margin-left: auto; 
-    margin-right: 20%;
 }
 
 .left-alligned
 {
-    margin-left: 5%; 
     margin-right: auto;
 }
 
 .text-left-alligned
 {
     text-align: left;
+}
+
+.text-right-alligned
+{
+    text-align: right;
 }
 
 .bold
@@ -95,6 +98,11 @@ h1,h2,h3
     overflow: hidden; 
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.pointer
+{
+    cursor: pointer;
 }
 
 .green
@@ -152,7 +160,12 @@ h1,h2,h3
 
 .grid-col-2-2
 {
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1fr 2fr;
+}
+
+.grid-col-2-3
+{
+    grid-template-columns: 2fr 1fr;
 }
 
 .grid-col-3

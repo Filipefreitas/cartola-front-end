@@ -22,38 +22,38 @@ const Rankings = () => {
     const colWidth = 70;
 
     const [columnDefs, setColumnDefs] = useState([
-        {field: 'team', rowGroup: true, width: 120}
-        , {field: 'round', pivot: true, pivotComparator: (valueA, valueB) => valueA - valueB}
-        , {field: 'points', width: colWidth, aggFunc: 'sum'}
-        , {field: 'pointsHome', width: colWidth}
-        , {field: 'pointsAway', width: colWidth}
-        , {field: 'won', width: colWidth}
-        , {field: 'wonHome', width: colWidth}
-        , {field: 'wonAway', width: colWidth}
-        , {field: 'drawn', width: colWidth}
-        , {field: 'drawnHome', width: colWidth}
-        , {field: 'drawnAway', width: colWidth}
-        , {field: 'lost', width: colWidth}
-        , {field: 'lostHome', width: colWidth}
-        , {field: 'lostAway', width: colWidth}
-        , {field: 'goalsScored', width: colWidth}
-        , {field: 'goalsScoredHome', width: colWidth}
-        , {field: 'goalsScoredAway', width: colWidth}
-        , {field: 'goalsAgainst', width: colWidth}
-        , {field: 'goalsAgainstHome', width: colWidth}
-        , {field: 'goalsAgainstAway', width: colWidth}
-        , {field: 'goalsDifference', width: colWidth}
-        , {field: 'goalsDifferenceHome', width: colWidth}
-        , {field: 'goalsDifferenceAway', width: colWidth}
-        , {field: 'cleanSheets', width: colWidth}
-        , {field: 'cleanSheetsHome', width: colWidth}
-        , {field: 'cleanSheetsAway', width: colWidth}
-        , {field: 'noGoals', width: colWidth}
-        , {field: 'noGoalsHome', width: colWidth}
-        , {field: 'noGoalsAway', width: colWidth}
-        , {field: 'percPoints', width: colWidth, pivot: false, defaultAggFunc: 'last'}
-        , {field: 'percPointsHome', width: colWidth, pivot: false, defaultAggFunc: 'last'}
-        , {field: 'percPointsAway', width: colWidth , pivot: false, defaultAggFunc: 'last'}
+        {field: 'team', headerName: "Time", rowGroup: true, width: 120}
+        , {field: 'round', headerName: "Rodada", pivot: true, pivotComparator: (valueA, valueB) => valueA - valueB}
+        , {field: 'points', headerName: "Pontos", width: colWidth, aggFunc: 'sum'}
+        , {field: 'pointsHome', headerName: "Pontos - mandante", width: colWidth}
+        , {field: 'pointsAway', headerName: "Pontos - visitante", width: colWidth}
+        , {field: 'won', headerName: "Vitórias", width: colWidth}
+        , {field: 'wonHome', headerName: "Vitórias - mandante", width: colWidth}
+        , {field: 'wonAway', headerName: "Pontos - visitante", width: colWidth}
+        , {field: 'drawn', headerName: "Empates", width: colWidth}
+        , {field: 'drawnHome', headerName: "Empates - mandante", width: colWidth}
+        , {field: 'drawnAway', headerName: "Empates - visitante", width: colWidth}
+        , {field: 'lost', headerName: "Derrotas", width: colWidth}
+        , {field: 'lostHome', headerName: "Derrotas - mandante", width: colWidth}
+        , {field: 'lostAway', headerName: "Derrotas - visitante", width: colWidth}
+        , {field: 'goalsScored', headerName: "Gols marcados", width: colWidth}
+        , {field: 'goalsScoredHome', headerName: "Gols marcados - mandante",width: colWidth}
+        , {field: 'goalsScoredAway', headerName: "Gols marcados - visitante", width: colWidth}
+        , {field: 'goalsAgainst', headerName: "Gols sofridos", width: colWidth}
+        , {field: 'goalsAgainstHome', headerName: "Gols sofridos - mandante",  width: colWidth}
+        , {field: 'goalsAgainstAway', headerName: "Gols sofridos - visitante", width: colWidth}
+        , {field: 'goalsDifference', headerName: "Saldo gols", width: colWidth}
+        , {field: 'goalsDifferenceHome', headerName: "Saldo gols - mandante",  width: colWidth}
+        , {field: 'goalsDifferenceAway', headerName: "Saldo gols - visitante",  width: colWidth}
+        , {field: 'cleanSheets', headerName: "Não sofreu gols", width: colWidth}
+        , {field: 'cleanSheetsHome', headerName: "Não sofreu gols - mandante", width: colWidth}
+        , {field: 'cleanSheetsAway', headerName: "Não sofreu gols - visitante", width: colWidth}
+        , {field: 'noGoals', headerName: "Não marcou  gols", width: colWidth}
+        , {field: 'noGoalsHome', headerName: "Não marcou gols - mandante", width: colWidth}
+        , {field: 'noGoalsAway', headerName: "Não marcou gols - visitante", width: colWidth}
+        , {field: 'percPoints', headerName: "Aproveitamento", width: colWidth, pivot: false, defaultAggFunc: 'last'}
+        , {field: 'percPointsHome', headerName: "Aproveitamento - mandante", width: colWidth, pivot: false, defaultAggFunc: 'last'}
+        , {field: 'percPointsAway', headerName: "Aproveitamento - visitante", width: colWidth , pivot: false, defaultAggFunc: 'last'}
     ]);
 
     const defaultColDef = useMemo(() => {
