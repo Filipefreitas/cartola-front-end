@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useLocation } from 'react'
+import { React, useEffect, useState } from 'react'
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import MonthMap from '../components/MonthMap';
@@ -46,6 +46,8 @@ const MonthMapPage = (props) =>
     
     const [filteredRounds , setFilteredRounds] = useState([{}]);
 
+    const [percDiffs , setPercDiffs] = useState([{}]);
+    
     const [histGames , setHistGames] = useState([{}]);
 
     //initial state
@@ -90,6 +92,18 @@ const MonthMapPage = (props) =>
         setFilteredRounds(newRounds);
     };
 
+    //perc diff
+    useEffect(()=>{ 
+        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/percDiff`)
+        .then(response=>response.json())
+        .then(json=>{
+            setPercDiffs(json.data)    
+        })
+        .catch(err=>{
+                console.log(`Error ${err}`)
+            })
+        }, []);
+
     //past games
     useEffect(()=>{ 
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/histgames/matches`)
@@ -106,7 +120,7 @@ const MonthMapPage = (props) =>
         <div>
             <Header/>
             <main>
-                <h3 className="section-title">MonthMap Page</h3>
+                <h3 className="section-title">MAPA JOGOS MÊS</h3>
                 <MonthMap rounds={rounds} setRounds={setRounds} 
                             filteredRounds={filteredRounds} setFilteredRounds={setFilteredRounds} 
                             month={month} setMonth={setMonth} 
@@ -114,6 +128,7 @@ const MonthMapPage = (props) =>
                             findMonthValue={findMonthValue}
                             runningStats={props.runningStats} setRunningStats={props.setRunningStats}
                             histGames={histGames} setHistGames={setHistGames}
+                            percDiffs={percDiffs} setPercDiffs={setPercDiffs}
                             />
             </main>
             <Footer/>

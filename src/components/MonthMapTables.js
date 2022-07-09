@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useLocation } from 'react'
+import { React } from 'react'
 
 import "../css/App.css"
 import "../css/utilities.css"
@@ -7,10 +7,10 @@ const MonthMapCard = (props) => {
 
     return (
         <main>
-            <div className='month-map grid grid-col-4'>
+            <div className='month-map grid grid-col-5'>
                 <table id="round-map" className='month-map-tables'>
                     <div>
-                        <h3 className="text-left-alligned">Dados rodada</h3>
+                        <h4 className="text-left-alligned table-title">Dados rodada</h4>
                         <thead>
                             <tr>
                                 <th className>Data</th>
@@ -39,7 +39,7 @@ const MonthMapCard = (props) => {
                 
                 <table id="home-stats" className='month-map-tables'>
                     <div>
-                        <h3 className="text-left-alligned">Dados mandante</h3>
+                        <h4 className="text-left-alligned table-title">Dados mandante</h4>
                         <thead>
                             <tr>
                                 <th>%</th>
@@ -60,7 +60,7 @@ const MonthMapCard = (props) => {
                             {props.filteredRounds.map((filteredRound, roundTeamKey) => { return (
                                 <tr key={roundTeamKey}>
                                     {props.runningStats.map((runningStat) => {
-                                        if(filteredRound.homeTeam === runningStat.team && filteredRound.tournmentRound === runningStat.round)  
+                                        if(filteredRound.homeTeam === runningStat.team && filteredRound.tournmentRound === runningStat.round) 
                                             return (
                                                 [
                                                     <td key={1}>{runningStat.percPointsHome}</td>
@@ -86,7 +86,7 @@ const MonthMapCard = (props) => {
 
                 <table id="away-stats" className='month-map-tables'>
                     <div>
-                    <h3 className="text-left-alligned">Dados visitante</h3>
+                    <h4 className="text-left-alligned table-title">Dados visitante</h4>
                         <thead>
                             <tr>
                                 <th>%</th>
@@ -131,21 +131,48 @@ const MonthMapCard = (props) => {
                     </div>
                 </table>  
                 
+                <table id="perc-diff" className='month-map-tables'>
+                    <div>
+                    <h4 className="text-left-alligned table-title">Aprov</h4>
+                        <thead>
+                            <tr>
+                                <th>% Diff</th>
+                            </tr>
+                        </thead>
+
+                        <tbody className='perc-diff-box'>
+                            {props.filteredRounds.map((filteredRound, roundTeamKey) => { return (
+                                <tr key={roundTeamKey}>
+                                    {props.percDiffs.map((percDiff) => {
+                                        if(filteredRound.homeTeam === percDiff.homeTeam && filteredRound.awayTeam === percDiff.awayTeam && filteredRound.tournmentRound === percDiff.tournmentRound)   
+                                            return (
+                                            [
+                                                <td key={1}>{percDiff.percDiff}</td>
+                                            ]
+                                        );
+                                    })}
+                                </tr>
+                                );
+                            })}
+                        </tbody>
+                    </div>
+                </table>  
+
                 <table id="hist-games" className='month-map-tables'>
                     <div>
-                    <h3 className="text-left-alligned">Últimos 5 confrontos</h3>
+                    <h4 className="text-left-alligned table-title">Últimos 5 confrontos</h4>
                         <thead>
                             <tr>
                                 <th>Data</th>
-                                <th colspan="3">Placar</th>
+                                <th>Placar</th>
                                 <th>Data</th>
-                                <th colspan="3">Placar</th>
+                                <th>Placar</th>
                                 <th>Data</th>
-                                <th colspan="3">Placar</th>
+                                <th>Placar</th>
                                 <th>Data</th>
-                                <th colspan="3">Placar</th>
+                                <th>Placar</th>
                                 <th>Data</th>
-                                <th colspan="3">Placar</th>
+                                <th>Placar</th>
                             </tr>
                         </thead>
 
@@ -164,9 +191,8 @@ const MonthMapCard = (props) => {
                                                 return (
                                                     [
                                                 <td>{(new Date(histGame.gameDate)).toLocaleDateString('br-PT', { month: '2-digit', day: '2-digit', year: '2-digit' })}</td>
-                                                , <td key={2}>{histGame.homeScore}</td>
-                                                , <td key={3}>-</td>
-                                                , <td key={4}>{histGame.awayScore}</td>
+                                                , <td key={2} className={histGame.gameWinner === "home"? "background-green" :
+                                                                        histGame.gameWinner === "away"? "background-red" : "background-grey"}>{histGame.gameResult}</td>
                                             ]);    
                                         }
                                     })}
@@ -182,4 +208,3 @@ const MonthMapCard = (props) => {
 }
 
 export default MonthMapCard
-

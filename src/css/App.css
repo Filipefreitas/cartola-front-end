@@ -62,15 +62,20 @@ footer ul
     font-size: 14px;
 }
 
-.team-name
+#team-name
 {
-    width: auto;
+    width: 100px;
 }
 
 /************* MONTH MAP PAGE *************/
 .month-map
 {
     max-width: 90%;
+}
+
+.month-map-tables
+{
+    padding: 20px 3px;
 }
 
 .month-map-tables tbody
@@ -81,19 +86,23 @@ footer ul
 .month-map-tables th,
     .standings-table th
 {
-    background-color: lightcoral;
-    color: white;
-    font-size: 12px;
+    color: darkgray;
+    background-color: white;
+    font-size: 11px;
+    white-space: nowrap;
 }
 
 th {
     position: sticky;
     top: 0;
+    border-style: none none solid none;
+    border-width: 1px;
   }
 
-.month-map-tables td
+.month-map-tables tbody, td
 {
-    font-size: 12px;
+    font-size: 11px;
+    width: 40px;
 }
 
 thead th {
@@ -106,4 +115,16 @@ thead th {
 {   
     background-color: #f5f5f5;
     color: #0D0D0D;
+}
+
+.table-title
+{
+    font-size: 16px;
+    color: #28282B;
+}
+
+.drop-down-container
+{
+    padding-top: 30px;
+    padding-left: 20px;
 }

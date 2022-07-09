@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { useState, useRef, useEffect, useMemo, useCallback} from 'react';
+import React, { useState, useRef, useMemo, useCallback} from 'react';
 import { render } from 'react-dom';
 import { AgGridReact } from 'ag-grid-react';
 
@@ -11,7 +11,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import "../css/App.css"
 import "../css/utilities.css"
 
-const Rankings = (props) => {
+const Rankings = () => {
     
     const gridRef = useRef();
     

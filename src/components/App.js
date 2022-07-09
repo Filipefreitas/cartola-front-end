@@ -1,10 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-   useLocation
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 import "../css/App.css";
 
@@ -15,35 +10,7 @@ import MonthMapPage from '../pages/MonthMapPage';
 
 const App =() =>
 { 
-  const [stats , setStats ] = useState([{}]);
-
-  const [roundsStats , setRoundsStats] = useState([{}]);
-
   const [runningStats , setRunningStats] = useState([{}]);
-
-  //get standings
-  useEffect(()=>{ 
-    fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/standings`)
-    .then(response=>response.json())
-    .then(json=>{
-        setStats(json.data)    
-    })
-    .catch(err=>{
-            console.log(`Error ${err}`)
-        })
-    }, []);
-
-    //round stats
-    useEffect(()=>{ 
-      fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/roundStats`)
-      .then(response=>response.json())
-      .then(json=>{
-        setRoundsStats(json.data)    
-      })
-      .catch(err=>{
-              console.log(`Error ${err}`)
-          })
-      }, []);
 
     //running stats
     useEffect(()=>{ 
@@ -62,7 +29,7 @@ const App =() =>
         <Routes>
           <Route exact path="/"element={<HomePage/>}/>
           
-          <Route exact path="/standings"element={<StandingsPage stats={stats} setStats={setStats} roundsStats={roundsStats} setRoundsStats={setRoundsStats}/>}/>
+          <Route exact path="/standings"element={<StandingsPage/>}/>
           
           <Route exact path="/rankings" element={<RankingsPage runningStats={runningStats} setRunningStats={setRunningStats}/>}/> 
 

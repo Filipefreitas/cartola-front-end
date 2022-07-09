@@ -33,7 +33,7 @@ const Standings = (props) => {
                             {props.stats.map((stat,index)=> { return (
                                             <tr key={index}>
                                                 <td>{index+1}</td>
-                                                <td className="text-left-alligned team-name">{stat.team}</td>
+                                                <td id="team-name" className="text-left-alligned">{stat.team}</td>
                                                 <td>{stat.points}</td>
                                                 <td>{stat.played}</td>
                                                 <td>{stat.won}</td>
@@ -58,15 +58,15 @@ const Standings = (props) => {
                                                                 {
                                                                     if(roundsStat.won === 1)
                                                                     {
-                                                                        return([<td className='green size-10'><FaCircle/></td>])
+                                                                        return([<td className='green size-9'><FaCircle/></td>])
                                                                     }
                                                                     else if(roundsStat.drawn === 1)
                                                                     {
-                                                                        return([<td className='grey size-10'><FaCircle/></td>])
+                                                                        return([<td className='grey size-9'><FaCircle/></td>])
                                                                     }
                                                                     else if(roundsStat.lost === 1)
                                                                     {
-                                                                        return([<td className='red size-10'><FaCircle/></td>])
+                                                                        return([<td className='red size-9'><FaCircle/></td>])
                                                                     }
                                                                 }
                                                             }

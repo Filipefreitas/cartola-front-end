@@ -9,7 +9,7 @@ const RankingsPage = (props) =>
         <div>
             <Header/>
             <main>
-                <h3 className="section-title">Rankings Page</h3>
+                <h3 className="section-title">RANKINGS</h3>
                 <Rankings runningStats={props.runningStats} setRunningStats={props.setRunningStats}/>
             </main>
             <Footer/>
