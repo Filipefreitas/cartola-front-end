@@ -7,8 +7,8 @@ import { FaCircle } from 'react-icons/fa';
 const Standings = (props) => {
     return (
         <main>
-            <div className='grid grid-col-2'>
-                <table id="standings" className='standings-table'>
+            <div>
+                <table id="standings" className='standings-table horizontal-center'>
                     <div>
                         <thead>
                             <tr>
@@ -29,7 +29,7 @@ const Standings = (props) => {
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody className='standings-body'>
                             {props.stats.map((stat,index)=> { return (
                                             <tr key={index}>
                                                 <td>{index+1}</td>
@@ -47,7 +47,6 @@ const Standings = (props) => {
                                                 <td>{stat.percPoints}</td>
                                             
                                                 <td>
-                                        
                                                     {props.roundsStats.map((roundsStat) => {
                                                         for(let i = 4; i >= 0; i--)
                                                         {
@@ -58,15 +57,15 @@ const Standings = (props) => {
                                                                 {
                                                                     if(roundsStat.won === 1)
                                                                     {
-                                                                        return([<td className='green size-9'><FaCircle/></td>])
+                                                                        return([<td className='icon-result green size-9'><FaCircle/></td>])
                                                                     }
                                                                     else if(roundsStat.drawn === 1)
                                                                     {
-                                                                        return([<td className='grey size-9'><FaCircle/></td>])
+                                                                        return([<td className='icon-result grey size-9'><FaCircle/></td>])
                                                                     }
                                                                     else if(roundsStat.lost === 1)
                                                                     {
-                                                                        return([<td className='red size-9'><FaCircle/></td>])
+                                                                        return([<td className='icon-result red size-9'><FaCircle/></td>])
                                                                     }
                                                                 }
                                                             }
