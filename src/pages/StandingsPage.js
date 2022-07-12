@@ -1,4 +1,5 @@
-import { React, useEffect, useState } from 'react'
+
+import { React, useEffect, useState, useCallback } from 'react'
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Standings from '../components/Standings';
@@ -12,8 +13,8 @@ const StandingsPage = (props) =>
     const [roundsStats , setRoundsStats] = useState([{}]);
   
     const [loading, setLoading] = useState(false);
-  
-    const [currentPage, setCurrentPage] = useState(1);
+    
+    const [currentPage, setCurrentPage] = useState(17);
   
     const [gamesPerPage] = useState(10);
 
@@ -32,15 +33,15 @@ const StandingsPage = (props) =>
     //round stats
     useEffect(()=>{ 
       fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/roundStats`)
-      .then(response=>response.json())
-      .then(json=>{
-        setRoundsStats(json.data)    
-      })
-      .catch(err=>{
-              console.log(`Error ${err}`)
-          })
+        .then(response=>response.json())
+        .then(json=>{
+            setRoundsStats(json.data)    
+        })
+        .catch(err=>{
+                console.log(`Error ${err}`)
+            })
       }, []);
-    
+
       const indexOfLastGame  = currentPage * gamesPerPage;
       const indexOfFirstGame  = indexOfLastGame - gamesPerPage;
       const currentGames = props.games.slice(indexOfFirstGame, indexOfLastGame);
@@ -65,8 +66,9 @@ const StandingsPage = (props) =>
                             gamesPerPage={gamesPerPage}
                             totalGames={props.games.length}
                             paginate={paginate}
+                            currentPage={currentPage}
                         />
-
+                        
                         <Games games={currentGames} loading={loading} />
                     </div>
                 </div>

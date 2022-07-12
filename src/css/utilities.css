@@ -107,7 +107,7 @@ h1,h2,h3
 
 .green
 {
-    color: #4ba416;
+    color: #4ba416 !important;
 }
 
 .red
@@ -118,6 +118,11 @@ h1,h2,h3
 .grey
 {
     color: #cecece;
+}
+
+.darkgray
+{
+    color: #404040
 }
 
 .size-9
