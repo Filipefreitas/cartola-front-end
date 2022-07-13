@@ -50,18 +50,11 @@ const MonthMapPage = (props) =>
     
     const [histGames , setHistGames] = useState([{}]);
 
-    //fetch list of games and filter according to the selected month
+    //reset state of game list, then filter them according to the selected month
     useEffect(()=>{ 
-        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/list`)
-        .then(response=>response.json())
-        .then(json=>{
-            setRounds(json.data)
-            setFilteredRounds(json.data.filter(rounds => rounds.cartolaMonth === month))
-        })
-        .catch(err=>{
-                console.log(`Error ${err}`)
-            })
-    }, []);
+        setRounds(props.games)
+        setFilteredRounds(props.games.filter(rounds => rounds.cartolaMonth === month))
+    })
 
     const findMonthValue = (input) => {
         let index = dropdownOptions.filter(option => { 

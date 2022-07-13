@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useLocation } from 'react'
+import { React } from 'react'
 import {Link} from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,7 +7,7 @@ import stats from "../images/icons/stats.png"
 import topThree from "../images/icons/top-three.png"
 import standings from "../images/icons/standings.png"
 
-const HomePage = (props) => 
+const HomePage = () => 
 {   
     return (
         <div>

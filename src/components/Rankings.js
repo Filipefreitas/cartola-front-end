@@ -11,7 +11,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.css';
 import "../css/App.css"
 import "../css/utilities.css"
 
-const Rankings = () => {
+const Rankings = (props) => {
     
     const gridRef = useRef();
     
@@ -76,19 +76,12 @@ const Rankings = () => {
       }
     };
     
-    //fetch data when grid is ready, filtering games that have already been played   
-    const onGridReady = useCallback((params) => {
-    fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/runningStats`)
-        .then(response=>response.json())
-        .then(json=>{
-            setRowData(json.data.filter((item) => {
-                return item.alreadyPlayed === true;
-            }))
-        })
-    .catch(err=>{
-            console.log(`Error ${err}`)
-        })
-    }, []);
+    //filtering games that have already been played from running stats
+    const onGridReady = useCallback(() => {
+        setRowData(props.runningStats.filter((item) => {
+            return item.alreadyPlayed === true;
+        }))
+    })
 
     const gridOptions = {
         suppressAggFuncInHeader: true
