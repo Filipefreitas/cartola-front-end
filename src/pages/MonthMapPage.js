@@ -50,32 +50,20 @@ const MonthMapPage = (props) =>
     
     const [histGames , setHistGames] = useState([{}]);
 
-    //initial state
+    //fetch list of games and filter according to the selected month
     useEffect(()=>{ 
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/list`)
         .then(response=>response.json())
         .then(json=>{
             setRounds(json.data)
+            setFilteredRounds(json.data.filter(rounds => rounds.cartolaMonth === month))
         })
         .catch(err=>{
                 console.log(`Error ${err}`)
             })
     }, []);
 
-    //filter state
-    useEffect(()=>{ 
-        fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/list`)
-        .then(response=>response.json())
-        .then(json=>{
-            setFilteredRounds(json.data.filter(rounds => rounds.cartolaMonth === month))
-            })
-        .catch(err=>{
-                console.log(`Error ${err}`)
-            })
-    }, []);
-
     const findMonthValue = (input) => {
-
         let index = dropdownOptions.filter(option => { 
             return option.label === input
         })
@@ -92,7 +80,7 @@ const MonthMapPage = (props) =>
         setFilteredRounds(newRounds);
     };
 
-    //perc diff
+    //fetch percentual difference points earned between home team and away team
     useEffect(()=>{ 
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/games/percDiff`)
         .then(response=>response.json())
@@ -104,7 +92,7 @@ const MonthMapPage = (props) =>
             })
         }, []);
 
-    //past games
+    //fetch past games
     useEffect(()=>{ 
         fetch(`${process.env.REACT_APP_BACK_END_API_DOMAIN}/histgames/matches`)
         .then(response=>response.json())

@@ -92,9 +92,7 @@ const Rankings = () => {
 
     const gridOptions = {
         suppressAggFuncInHeader: true
-        , suppressSizeToFit: true
         , pivotMode: true
-        , toolPanel: 'columns'
         , sideBar: 'columns'
     }
     
