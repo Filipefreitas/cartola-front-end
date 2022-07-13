@@ -48,7 +48,7 @@ const App =() =>
 
           <Route exact path="/map" element={<MonthMapPage runningStats={runningStats} setRunningStats={setRunningStats} games={games} setGames={setGames}/>}/>
           
-          <Route exact path="/standings"element={<StandingsPage games={games} setGames={setGames}/>}/>
+          <Route exact path="/standings"element={<StandingsPage games={games} setGames={setGames} runningStats={runningStats}/>}/>
         </Routes>
       </Router>
   )

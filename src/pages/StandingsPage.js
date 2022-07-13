@@ -14,7 +14,7 @@ const StandingsPage = (props) =>
   
     const [loading, setLoading] = useState(false);
     
-    const [currentPage, setCurrentPage] = useState(17);
+    const [currentPage, setCurrentPage] = useState();
   
     const [gamesPerPage] = useState(10);
 
@@ -42,9 +42,38 @@ const StandingsPage = (props) =>
             })
       }, []);
 
-      const indexOfLastGame  = currentPage * gamesPerPage;
-      const indexOfFirstGame  = indexOfLastGame - gamesPerPage;
-      const currentGames = props.games.slice(indexOfFirstGame, indexOfLastGame);
+    //identify the last played round to properly load the game list in the standings page
+    useEffect(()=>{ 
+        let playedRounds = [];
+        for(let i = 0; i < props.runningStats.length; i++)
+        {
+            console.log(`props.games.alreadyPlayed: ${props.runningStats[i].alreadyPlayed}`)
+            if(props.runningStats[i].alreadyPlayed && !playedRounds.includes(props.runningStats[i].round))
+            {
+                playedRounds.push(props.runningStats[i].round)
+            }
+        }
+        const latestRound = Math.max( ...playedRounds );
+        //if no rounds have been played, load the first round
+        if(latestRound === undefined)
+        {
+            setCurrentPage(1)
+        }
+        //if all rounds have been played, load the last round
+        else if(latestRound === 38)
+        {
+            setCurrentPage(38)
+        }
+        //if the tournament is anywhere between the first and last rounds, load the next round
+        else
+        {
+            setCurrentPage(Math.max( ...playedRounds ) + 1);
+        }
+    }, []);
+        
+    const indexOfLastGame  = currentPage * gamesPerPage;
+    const indexOfFirstGame  = indexOfLastGame - gamesPerPage;
+    const currentGames = props.games.slice(indexOfFirstGame, indexOfLastGame);
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);

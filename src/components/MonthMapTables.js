@@ -160,7 +160,7 @@ const MonthMapCard = (props) => {
 
                 <table id="hist-games" className='month-map-tables'>
                     <div>
-                    <h4 className="text-left-alligned table-title">Últimos 5 confrontos</h4>
+                    <h4 className="text-left-alligned table-title">Últimos 5 confrontos série A</h4>
                         <thead>
                             <tr>
                                 <th>Data</th>
