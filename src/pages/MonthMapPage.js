@@ -52,8 +52,9 @@ const MonthMapPage = (props) =>
 
     // filter rounds according to the selected month
     useEffect(()=>{ 
+        setRounds(props.games)
         setFilteredRounds(props.games.filter(rounds => rounds.cartolaMonth === month))
-    })
+    }, [])
 
     const findMonthValue = (input) => {
         let index = dropdownOptions.filter(option => { 
