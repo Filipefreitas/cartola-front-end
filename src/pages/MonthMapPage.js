@@ -50,9 +50,8 @@ const MonthMapPage = (props) =>
     
     const [histGames , setHistGames] = useState([{}]);
 
-    //reset state of game list, then filter them according to the selected month
+    // filter rounds according to the selected month
     useEffect(()=>{ 
-        setRounds(props.games)
         setFilteredRounds(props.games.filter(rounds => rounds.cartolaMonth === month))
     })
 
