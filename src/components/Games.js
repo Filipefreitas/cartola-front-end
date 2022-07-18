@@ -8,7 +8,7 @@ const Games = ({ games, loading }) => {
   return (
       <div className='game-container'>
         {games.map(game => (
-          <div class="game-item">
+          <div className="game-item">
               <div className='game-date'>{(new Date(game.gameDate)).toLocaleDateString('br-PT', { weekday: 'long', month: '2-digit', day: '2-digit', year: '2-digit' })}</div>
                 <div className='grid grid-col-3'> 
                 <div className='right-alligned vertical-center'>

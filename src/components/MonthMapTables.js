@@ -3,7 +3,7 @@ import { React } from 'react'
 import "../css/App.css"
 import "../css/utilities.css"
 
-const MonthMapCard = (props) => {
+const MonthMapTables = (props) => {
 
     return (
         <main>
@@ -16,7 +16,7 @@ const MonthMapCard = (props) => {
                                 <th className>Data</th>
                                 <th>Rodada</th>
                                 <th>Mandante</th>
-                                <th colspan="3">Placar</th>
+                                <th colSpan="3">Placar</th>
                                 <th>Visitante</th>
                             </tr>
                         </thead>
@@ -207,4 +207,4 @@ const MonthMapCard = (props) => {
     )
 }
 
-export default MonthMapCard
+export default MonthMapTables

@@ -32,7 +32,7 @@ const HomePage = () =>
                         </div>
                     </div>
 
-                    <div class="home-container grid grid-col-2-3 horizontal-center">
+                    <div className="home-container grid grid-col-2-3 horizontal-center">
                             <div>
                                 <p className="home-content right-alligned text-right-alligned">
                                     Na página Mapa Estatístico, você encontra o calendário de jogos válidos para o cartola dentro de um mês específico, e as estatísticas de cada time considerando a configuração mandante-visitante da rodada, bem como o histórico dos últimos 5 jogos entre essas equipes na mesma configuração.
@@ -45,7 +45,7 @@ const HomePage = () =>
                     </div>
 
                     
-                    <div class="home-container grid grid-col-2-2 horizontal-center">
+                    <div className="home-container grid grid-col-2-2 horizontal-center">
                         <div>
                             <Link to="/standings"><img className="horizontal-center" src={standings} alt=""/></Link>
                         </div>

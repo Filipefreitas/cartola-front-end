@@ -25,7 +25,7 @@ const Standings = (props) => {
                                 <th>CS</th>
                                 <th>NG</th>
                                 <th>%</th>
-                                <th colspan="5" className="no-wrap">ULT. JOGOS</th>
+                                <th colSpan="5" className="no-wrap">ULT. JOGOS</th>
                             </tr>
                         </thead>
 
