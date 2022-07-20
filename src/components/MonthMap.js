@@ -24,7 +24,14 @@ const MonthMap = (props) => {
             </div>
             
             <div>
-                <MonthMapTables filteredRounds={props.filteredRounds} runningStats={props.runningStats} histGames={props.histGames} percDiffs={props.percDiffs}/>
+                <MonthMapTables 
+                    games={props.games}
+                    rounds={props.rounds} 
+                    filteredRounds={props.filteredRounds} 
+                    runningStats={props.runningStats} 
+                    histGames={props.histGames} 
+                    percDiffs={props.percDiffs}
+                />
             </div>
 
         </main>

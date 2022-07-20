@@ -102,7 +102,8 @@ const MonthMapPage = (props) =>
             <Header/>
             <main>
                 <h3 className="section-title">MAPA JOGOS MÊS</h3>
-                <MonthMap rounds={rounds} setRounds={setRounds} 
+                <MonthMap games={props.games}
+                            rounds={rounds} setRounds={setRounds} 
                             filteredRounds={filteredRounds} setFilteredRounds={setFilteredRounds} 
                             month={month} setMonth={setMonth} 
                             dropdownOptions={dropdownOptions} 

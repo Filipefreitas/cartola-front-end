@@ -1,0 +1,37 @@
+
+.modal-container 
+{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 50%;
+    width: 40%;
+    z-index:1;
+    background-color: rgba(20, 20, 20, 0.95);
+    grid-template-columns: 1f;
+}
+
+.modal-table 
+{
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+    transition: background .2s;
+}
+
+.close-modal
+{
+    position: absolute; 
+    right: 0;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    transition: background .2s;
+}

@@ -1,12 +1,63 @@
-import { React } from 'react'
+import { React, useState } from 'react'
+import Modal from '../components/Modal.js'
 
 import "../css/App.css"
 import "../css/utilities.css"
 
 const MonthMapTables = (props) => {
 
+    const [modalOn, setModalOn] = useState(false);
+
+    const [modalItems, setModalItems] = useState([{}]);
+
+    const modalDefinitions = (team, config) => {
+                
+        let modalGames = [];
+
+        if(config === "homeModal")
+        {
+            {props.games.map((game,_id)=> { 
+                if(game.homeTeam === team && game.homeScore != undefined)
+                {
+                    const modalGame = {
+                        tournmentRound: game.tournmentRound
+                        , gameDate: game.gameDate
+                        , homeTeam: game.homeTeam
+                        , homeScore: game.homeScore
+                        , awayTeam: game.awayTeam
+                        , awayScore: game.awayScore
+                    }
+                    modalGames.push(modalGame);
+                }})
+            }
+        }
+        else
+        {
+            {props.games.map((game,_id)=> { 
+                if(game.awayTeam === team && game.awayScore != undefined)
+                {
+                    const modalGame = {
+                        tournmentRound: game.tournmentRound
+                        , gameDate: game.gameDate
+                        , homeTeam: game.homeTeam
+                        , homeScore: game.homeScore
+                        , awayTeam: game.awayTeam
+                        , awayScore: game.awayScore
+                    }
+                    modalGames.push(modalGame);
+                }})
+            }
+        }
+
+        setModalItems(modalGames);
+        setModalOn(!modalOn);
+    }
+
+
     return (
         <main>
+            <Modal modalOn={modalOn} setModalOn={setModalOn} modalItems={modalItems}/>
+            
             <div className='month-map grid grid-col-5'>
                 <table id="round-map" className='month-map-tables'>
                     <div>
@@ -26,11 +77,17 @@ const MonthMapTables = (props) => {
                                 <tr key={roundTeamKey}>
                                         <td>{(new Date(filteredRound.gameDate)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit' })}</td>
                                         <td>{filteredRound.tournmentRound}</td>
-                                        <td>{filteredRound.homeTeam}</td>
+                                        <td className='pointer'
+                                            onClick={() => {modalDefinitions(filteredRound.homeTeam, "homeModal")}}>
+                                                {filteredRound.homeTeam}
+                                        </td>
                                         <td>{filteredRound.homeScore}</td>
                                         <td>x</td>
                                         <td>{filteredRound.awayScore}</td>
-                                        <td>{filteredRound.awayTeam}</td>
+                                        <td className='pointer'
+                                            onClick={() => {modalDefinitions(filteredRound.awayTeam, "awayModal")}}>
+                                                {filteredRound.awayTeam}
+                                        </td>
                                     </tr>
                                 )})}
                         </tbody>

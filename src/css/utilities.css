@@ -33,6 +33,11 @@ h1,h2,h3
     display:none;
 }
 
+.visible
+{ 
+    display:block;
+}
+
 .container
 {
     width:100%;
@@ -234,4 +239,14 @@ h1,h2,h3
     border-style: groove;
     border-color: black;
     border-radius: 9%;
+}
+
+/************* BUTTONS *************/
+.btn-close
+{
+    background-color: rgba(230, 118, 60, 0.8);
+    border: 2px solid black;
+    color: #404040;
+    width: 160px;
+    font-size: 14px;
 }
