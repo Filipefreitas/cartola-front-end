@@ -135,6 +135,11 @@ h1,h2,h3
     font-size: 9px;
 }
 
+.orange-headers
+{
+    background-color: rgba(230, 118, 60, 0.8);
+}
+
 /************* FONT SIZES *************/
 .font-size-14
 {

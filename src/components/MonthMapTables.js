@@ -10,12 +10,18 @@ const MonthMapTables = (props) => {
 
     const [modalItems, setModalItems] = useState([{}]);
 
+    const [teamConfig, setTeamConfig] = useState();
+
+    const [selectedTeam, setSelectedTeam] = useState();
+
     const modalDefinitions = (team, config) => {
                 
         let modalGames = [];
 
         if(config === "homeModal")
         {
+            setTeamConfig("mandante");
+
             {props.games.map((game,_id)=> { 
                 if(game.homeTeam === team && game.homeScore != undefined)
                 {
@@ -33,6 +39,8 @@ const MonthMapTables = (props) => {
         }
         else
         {
+            setTeamConfig("visitante");
+
             {props.games.map((game,_id)=> { 
                 if(game.awayTeam === team && game.awayScore != undefined)
                 {
@@ -49,14 +57,16 @@ const MonthMapTables = (props) => {
             }
         }
 
+        setSelectedTeam(team);
         setModalItems(modalGames);
         setModalOn(!modalOn);
+        
     }
 
 
     return (
         <main>
-            <Modal modalOn={modalOn} setModalOn={setModalOn} modalItems={modalItems}/>
+            <Modal modalOn={modalOn} setModalOn={setModalOn} modalItems={modalItems} teamConfig={teamConfig} selectedTeam={selectedTeam}/>
             
             <div className='month-map grid grid-col-5'>
                 <table id="round-map" className='month-map-tables'>
@@ -64,7 +74,7 @@ const MonthMapTables = (props) => {
                         <h4 className="text-left-alligned table-title">Dados rodada</h4>
                         <thead>
                             <tr>
-                                <th className>Data</th>
+                                <th>Data</th>
                                 <th>Rodada</th>
                                 <th>Mandante</th>
                                 <th colSpan="3">Placar</th>

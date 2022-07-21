@@ -1,3 +1,8 @@
+h4
+{
+    color: aliceblue;
+    margin-top: 2%;
+}
 
 .modal-container 
 {
@@ -10,16 +15,33 @@
     height: 50%;
     width: 40%;
     z-index:1;
-    background-color: rgba(20, 20, 20, 0.95);
+    background-color: rgba(20, 20, 20, 0.9);
     grid-template-columns: 1f;
 }
 
-.modal-table 
-{
-    font-weight: bold;
+.modal-table
+{   
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
     font-size: 15px;
     outline: none;
     transition: background .2s;
+}
+
+.modal-table tbody tr:nth-child(even)
+{   
+    background-color: #AEAAAA;
+    color: white;
+}
+
+.modal-table tbody tr:nth-child(odd)
+{   
+    background-color: #E4E4E4;
+    color: #0D0D0D;    
 }
 
 .close-modal
