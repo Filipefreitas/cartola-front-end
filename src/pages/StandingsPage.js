@@ -47,7 +47,6 @@ const StandingsPage = (props) =>
         let playedRounds = [];
         for(let i = 0; i < props.runningStats.length; i++)
         {
-            console.log(`props.games.alreadyPlayed: ${props.runningStats[i].alreadyPlayed}`)
             if(props.runningStats[i].alreadyPlayed && !playedRounds.includes(props.runningStats[i].round))
             {
                 playedRounds.push(props.runningStats[i].round)

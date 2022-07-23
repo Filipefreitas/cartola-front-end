@@ -139,11 +139,11 @@ footer ul
 }
 
 th {
-    position: sticky;
     top: 0;
     border-style: none none solid none;
     border-width: 1px;
-  }
+    padding-top: 25px;
+}
 
 .month-map-tables tbody, td
 {
@@ -151,12 +151,13 @@ th {
     width: 40px;
 }
 
-thead th {
+thead th 
+{
     padding-left: 10px;
     padding-right: 10px;
-  }
+}
 
-.month-map-tables tbody tr:nth-child(even), 
+.month-map-box:nth-child(even),
     .standings-table tbody tr:nth-child(even)
 {   
     background-color: #f5f5f5;
@@ -166,18 +167,13 @@ thead th {
 .table-title
 {
     font-size: 16px;
-    color: #28282B;
+    color: #28282B;;
 }
 
 .drop-down-container
 {
     padding-top: 30px;
     padding-left: 20px;
-}
-
-.new-round
-{
-    border-top: #171717b8 dotted 2px;
 }
 
 /************* HOME PAGE *************/

@@ -32,6 +32,11 @@
     transition: background .2s;
 }
 
+.modal-table div tr th
+{
+    padding-top: 0;
+}
+
 .modal-table tbody tr:nth-child(even)
 {   
     background-color: #AEAAAA;
