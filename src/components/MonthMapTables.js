@@ -14,6 +14,22 @@ const MonthMapTables = (props) => {
 
     const [selectedTeam, setSelectedTeam] = useState();
 
+    let gameRounds = [];
+    
+    //function used to identify first game of a new round to add borders to the table
+    const setBorders = (filteredRound, tableType) => {
+        let tableRoundKey = tableType + "_" + filteredRound.tournmentRound
+        let isNewRound = "not-new";
+        
+        if(gameRounds.indexOf(tableRoundKey) === -1)
+        {
+            gameRounds.push(tableRoundKey)
+            isNewRound = "new-round";
+        } 
+
+        return isNewRound;
+    }
+
     const modalDefinitions = (team, config) => {
                 
         let modalGames = [];
@@ -23,7 +39,7 @@ const MonthMapTables = (props) => {
             setTeamConfig("mandante");
 
             {props.games.map((game,_id)=> { 
-                if(game.homeTeam === team && game.homeScore != undefined)
+                if(game.homeTeam === team && game.homeScore !== undefined)
                 {
                     const modalGame = {
                         tournmentRound: game.tournmentRound
@@ -42,7 +58,7 @@ const MonthMapTables = (props) => {
             setTeamConfig("visitante");
 
             {props.games.map((game,_id)=> { 
-                if(game.awayTeam === team && game.awayScore != undefined)
+                if(game.awayTeam === team && game.awayScore !== undefined)
                 {
                     const modalGame = {
                         tournmentRound: game.tournmentRound
@@ -83,18 +99,21 @@ const MonthMapTables = (props) => {
                         </thead>
 
                         <tbody className='month-map-box'>
-                            {props.filteredRounds.map((filteredRound,roundTeamKey)=> { return (
-                                <tr key={roundTeamKey}>
-                                        <td>{(new Date(filteredRound.gameDate)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit' })}</td>
-                                        <td>{filteredRound.tournmentRound}</td>
-                                        <td className='pointer'
+                            {props.filteredRounds.map((filteredRound,index)=> {                                     
+                                const newRound = setBorders(filteredRound, "table-rounds")
+                                                                    
+                            return (
+                                <tr key={index}>
+                                        <td className={newRound}>{(new Date(filteredRound.gameDate)).toLocaleDateString('pt-BR', { month: '2-digit', day: '2-digit' })}</td>
+                                        <td className={newRound}>{filteredRound.tournmentRound}</td>
+                                        <td className={`pointer ${newRound}`}
                                             onClick={() => {modalDefinitions(filteredRound.homeTeam, "homeModal")}}>
                                                 {filteredRound.homeTeam}
                                         </td>
-                                        <td>{filteredRound.homeScore}</td>
-                                        <td>x</td>
-                                        <td>{filteredRound.awayScore}</td>
-                                        <td className='pointer'
+                                        <td className={newRound}>{filteredRound.homeScore}</td>
+                                        <td className={newRound}>x</td>
+                                        <td className={newRound}>{filteredRound.awayScore}</td>
+                                        <td className={`pointer ${newRound}`}
                                             onClick={() => {modalDefinitions(filteredRound.awayTeam, "awayModal")}}>
                                                 {filteredRound.awayTeam}
                                         </td>
@@ -124,23 +143,26 @@ const MonthMapTables = (props) => {
                         </thead>
 
                         <tbody className='month-map-box'>
-                            {props.filteredRounds.map((filteredRound, roundTeamKey) => { return (
+                            {props.filteredRounds.map((filteredRound, roundTeamKey) => { 
+                                const newRound = setBorders(filteredRound, "table-home")
+                                
+                                return (
                                 <tr key={roundTeamKey}>
                                     {props.runningStats.map((runningStat) => {
-                                        if(filteredRound.homeTeam === runningStat.team && filteredRound.tournmentRound === runningStat.round) 
+                                        if(filteredRound.homeTeam === runningStat.team && filteredRound.tournmentRound === runningStat.round)
                                             return (
                                                 [
-                                                    <td key={1}>{runningStat.percPointsHome}</td>
-                                                    , <td key={2}>{runningStat.pointsHome}</td>
-                                                    , <td key={3}>{runningStat.playedHome}</td>
-                                                    , <td key={4}>{runningStat.wonHome}</td>
-                                                    , <td key={5}>{runningStat.drawnHome}</td>
-                                                    , <td key={6}>{runningStat.lostHome}</td>
-                                                    , <td key={7}>{runningStat.goalsScoredHome}</td>
-                                                    , <td key={8}>{runningStat.goalsAgainstHome}</td>
-                                                    , <td key={9}>{runningStat.goalsDifferenceHome}</td>
-                                                    , <td key={10}>{runningStat.cleanSheetsHome}</td>
-                                                    , <td key={11}>{runningStat.noGoalsHome}</td>
+                                                    <td key={1} className={newRound}>{runningStat.percPointsHome}</td>
+                                                    , <td key={2} className={newRound}>{runningStat.pointsHome}</td>
+                                                    , <td key={3} className={newRound}>{runningStat.playedHome}</td>
+                                                    , <td key={4} className={newRound}>{runningStat.wonHome}</td>
+                                                    , <td key={5} className={newRound}>{runningStat.drawnHome}</td>
+                                                    , <td key={6} className={newRound}>{runningStat.lostHome}</td>
+                                                    , <td key={7} className={newRound}>{runningStat.goalsScoredHome}</td>
+                                                    , <td key={8} className={newRound}>{runningStat.goalsAgainstHome}</td>
+                                                    , <td key={9} className={newRound}>{runningStat.goalsDifferenceHome}</td>
+                                                    , <td key={10} className={newRound}>{runningStat.cleanSheetsHome}</td>
+                                                    , <td key={11} className={newRound}>{runningStat.noGoalsHome}</td>
                                             ]
                                             );
                                         })}
@@ -171,23 +193,26 @@ const MonthMapTables = (props) => {
                         </thead>
 
                         <tbody className='month-map-box'>
-                            {props.filteredRounds.map((filteredRound, roundTeamKey) => { return (
+                            {props.filteredRounds.map((filteredRound, roundTeamKey) => { 
+                                const newRound = setBorders(filteredRound, "table-away")
+
+                                return (
                                 <tr key={roundTeamKey}>
-                                    {props.runningStats.map((runningStat, roundTeamKey) => {
+                                    {props.runningStats.map((runningStat) => {
                                         if(filteredRound.awayTeam === runningStat.team && filteredRound.tournmentRound === runningStat.round)  
                                             return (
                                                 [
-                                                    <td key={1}>{runningStat.percPointsAway}</td>
-                                                    , <td key={2}>{runningStat.pointsAway}</td>
-                                                    , <td key={3}>{runningStat.playedAway}</td>
-                                                    , <td key={4}>{runningStat.wonAway}</td>
-                                                    , <td key={5}>{runningStat.drawnAway}</td>
-                                                    , <td key={6}>{runningStat.lostAway}</td>
-                                                    , <td key={7}>{runningStat.goalsScoredAway}</td>
-                                                    , <td key={8}>{runningStat.goalsAgainstAway}</td>
-                                                    , <td key={9}>{runningStat.goalsDifferenceAway}</td>
-                                                    , <td key={10}>{runningStat.cleanSheetsAway}</td>
-                                                    , <td key={11}>{runningStat.noGoalsAway}</td>
+                                                    <td key={1} className={newRound}>{runningStat.percPointsAway}</td>
+                                                    , <td key={2} className={newRound}>{runningStat.pointsAway}</td>
+                                                    , <td key={3} className={newRound}>{runningStat.playedAway}</td>
+                                                    , <td key={4} className={newRound}>{runningStat.wonAway}</td>
+                                                    , <td key={5} className={newRound}>{runningStat.drawnAway}</td>
+                                                    , <td key={6} className={newRound}>{runningStat.lostAway}</td>
+                                                    , <td key={7} className={newRound}>{runningStat.goalsScoredAway}</td>
+                                                    , <td key={8} className={newRound}>{runningStat.goalsAgainstAway}</td>
+                                                    , <td key={9} className={newRound}>{runningStat.goalsDifferenceAway}</td>
+                                                    , <td key={10} className={newRound}>{runningStat.cleanSheetsAway}</td>
+                                                    , <td key={11} className={newRound}>{runningStat.noGoalsAway}</td>
                                               ]
                                             );
                                         })}
@@ -208,13 +233,16 @@ const MonthMapTables = (props) => {
                         </thead>
 
                         <tbody className='perc-diff-box'>
-                            {props.filteredRounds.map((filteredRound, roundTeamKey) => { return (
+                            {props.filteredRounds.map((filteredRound, roundTeamKey) => { 
+                                const newRound = setBorders(filteredRound, "table-perc-diff")
+
+                                return (
                                 <tr key={roundTeamKey}>
                                     {props.percDiffs.map((percDiff) => {
                                         if(filteredRound.homeTeam === percDiff.homeTeam && filteredRound.awayTeam === percDiff.awayTeam && filteredRound.tournmentRound === percDiff.tournmentRound)   
                                             return (
                                             [
-                                                <td key={1}>{percDiff.percDiff}</td>
+                                                <td key={1} className={newRound}>{percDiff.percDiff}</td>
                                             ]
                                         );
                                     })}
@@ -245,9 +273,11 @@ const MonthMapTables = (props) => {
 
                         <tbody className='month-map-box'>
                                 {props.filteredRounds.map((filteredRound) => { 
+                                    const newRound = setBorders(filteredRound, "table-last-games")
+
                                     if(filteredRound.isFisrtHistGame === "S")
                                     {
-                                        return (<tr><td>-</td></tr>);
+                                        return (<tr><td className={newRound}>-</td></tr>);
                                     }
                                     
                                     return(
@@ -256,10 +286,10 @@ const MonthMapTables = (props) => {
                                             if(filteredRound.homeTeam === histGame.homeTeam && filteredRound.awayTeam === histGame.awayTeam && histGame.countMatches <= 4)  
                                             {
                                                 return (
-                                                    [
-                                                <td>{(new Date(histGame.gameDate)).toLocaleDateString('br-PT', { month: '2-digit', day: '2-digit', year: '2-digit' })}</td>
-                                                , <td key={2} className={histGame.gameWinner === "home"? "background-green" :
-                                                                        histGame.gameWinner === "away"? "background-red" : "background-grey"}>{histGame.gameResult}</td>
+                                                [
+                                                    <td className={newRound}>{(new Date(histGame.gameDate)).toLocaleDateString('br-PT', { month: '2-digit', day: '2-digit', year: '2-digit' })}</td>
+                                                    , <td key={2} className={histGame.gameWinner === "home"? `background-green ${newRound}` :
+                                                                            histGame.gameWinner === "away"? `background-red ${newRound}` : `background-grey ${newRound}`}>{histGame.gameResult}</td>
                                             ]);    
                                         }
                                     })}

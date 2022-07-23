@@ -138,6 +138,7 @@ h1,h2,h3
 .orange-headers
 {
     background-color: rgba(230, 118, 60, 0.8);
+    color: white;
 }
 
 /************* FONT SIZES *************/

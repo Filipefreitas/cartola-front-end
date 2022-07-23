@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useEffect, useState} from "react";
 
 import "../css/App.css"
 import "../css/utilities.css"
@@ -7,8 +7,8 @@ import "../css/modal.css"
 const Modal = (props) => {
   return (
     <div className={props.modalOn ? "visible modal-container" : "hide"} role="dialog">
-        <h4 className="">Desempenho do {props.selectedTeam} como {props.teamConfig}</h4>
-        <button type="button" class="close-modal btn-close" data-dismiss="modal" aria-hidden="true" onClick={() => props.setModalOn(false)}>×</button> 
+        <h4 className="modal-title">Desempenho do {props.selectedTeam} como {props.teamConfig}</h4>
+        <button type="button" className="close-modal btn-close" data-dismiss="modal" aria-hidden="true" onClick={() => props.setModalOn(false)}>×</button> 
         <table className="modal-table">
           <div>     
             <thead className="orange-headers">
@@ -24,7 +24,7 @@ const Modal = (props) => {
             </thead>
 
           <tbody>
-            {props.modalItems.map((modalItem,_id)=> { 
+            {props.modalItems.map((modalItem, _id)=> { 
               if(props.teamConfig === "mandante")
               {
                 return (

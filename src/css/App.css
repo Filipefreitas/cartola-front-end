@@ -175,6 +175,11 @@ thead th {
     padding-left: 20px;
 }
 
+.new-round
+{
+    border-top: #171717b8 dotted 2px;
+}
+
 /************* HOME PAGE *************/
 .home-page-container
 {
