@@ -260,7 +260,7 @@ const MonthMapTables = (props) => {
 
     const printTable = (newRound, headers, tableBody, isFirstGame) => {
         if(newRound){
-            if(isFirstGame === "S")
+            if(isFirstGame)
             {
                 return (<tr><td>-</td></tr>);
             }
@@ -270,7 +270,7 @@ const MonthMapTables = (props) => {
                 {tableBody}</>
             )}
         else {
-            if(isFirstGame === "S")
+            if(isFirstGame)
             {
                 return (<tr><td>-</td></tr>);
             }
